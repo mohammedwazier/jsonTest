@@ -18,7 +18,9 @@ def appendFunc(data):
         "inactiveMem" : 0,
         "freeMem" : 0
     })
-
+def jsonExec(data):
+    #return json object and more readable
+    return json.dumps(data, indent=2)
 
 #Creating a protocol
 defaultData = {}
@@ -29,11 +31,12 @@ defaultData['timeExec'] = 0
 
 #Append JSON Data
 appendFunc(defaultData)
-newData = json.dumps(defaultData, indent=2)
+newData = jsonExec(defaultData)
 newData = json.loads(newData)
 appendFunc(newData)
 # appendFunc(newData)
 for test in newData['data']:
-    print(json.dumps(test, indent=2))
-# print(json.dumps(newData, indent=2))
+    del(test['inactiveMem'])
+    # print(jsonExec(test))
+print(json.dumps(newData, indent=2))
 print(time.time()-start) #Print Time Load Execution
